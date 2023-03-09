@@ -23,3 +23,4 @@ KoBART는 40GB 이상의 한국어 텍스트에 대해서 학습한 모델이라
 ## 4. 사용 모델과 데이터 및 참고링크
 - [KoBART](https://github.com/SKT-AI/KoBART)
 - [한국어-영어 병렬 말뭉치](https://github.com/jungyeul/korean-parallel-corpora)
+- [KoBART Translation Example](https://github.com/seujung/KoBART-translation)
