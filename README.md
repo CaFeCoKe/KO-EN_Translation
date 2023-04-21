@@ -22,26 +22,26 @@ KoBART는 40GB 이상의 한국어 텍스트에 대해서 학습한 모델이라
 
 - MBart <br>
 MBart는 BART objective를 이용하여 여러 언어로 된 대규모 단일 언어 말뭉치에 대해 pretrain된 sequence-to-sequence denoising auto-encoder이다. 선택이유로는 기존 Bart의 구성으로 한국어, 영어에 대해 학습이 되어있으며, MBart의 Tokenizer는 KoBART와 달리 두 언어에 대해 단어단위로 Tokenizing해주는 것을 확인하였기 때문이다. <br>
-    - Source & Target Text Format <br>
-Source Text의 Format은 X [eos, src_lang_code], Target Text의 Format은 [tgt_lang_code] X [eos]이다(X는 각각 Source text, Target text). 특이한 점으로는 어떤 언어인지 확인하기 위해 lang_code가 들어간다는 점이다(한국어: ko_KR, 영아: en_XX).
-    - 메모리 부족현상 <br>
-동일한 데이터로 KoBART를 fine-tuning을 할 때와 달리 MBart 사용시 CUDA out of memory 에러가 계속 떴다. 이를 해결 하기 위해 batch size를 줄이는 방법에 Gradient Accumulation을 사용하여 이를 해결하려 하였으나 batch size가 2임에도 학습 실행이 안정적이지 않았다. <br>
-따라서, 데이터의 크기 문제도 있겠지만 데이터의 수를 줄이는 것보단 모델의 크기나 복잡성이 더 적은 모델을 찾아 사용해보는 것이 더 낫다고 판단하였다.(MBart는 large모델 밖에 없다는 점도 아쉬운 점이다.)
-<br><table border ="0">
-  <tr align ="center">
+  - Source & Target Text Format <br>
+  Source Text의 Format은 X [eos, src_lang_code], Target Text의 Format은 [tgt_lang_code] X [eos]이다(X는 각각 Source text, Target text). 특이한 점으로는 어떤 언어인지 확인하기 위해 lang_code가 들어간다는 점이다(한국어: ko_KR, 영아: en_XX).
+  - 메모리 부족현상 <br>
+  동일한 데이터로 KoBART를 fine-tuning을 할 때와 달리 MBart 사용시 CUDA out of memory 에러가 계속 떴다. 이를 해결 하기 위해 batch size를 줄이는 방법에 Gradient Accumulation을 사용하여 이를 해결하려 하였으나 batch size가 2임에도 학습 실행이 안정적이지 않았다. <br>
+  따라서, 데이터의 크기 문제도 있겠지만 데이터의 수를 줄이는 것보단 모델의 크기나 복잡성이 더 적은 모델을 찾아 사용해보는 것이 더 낫다고 판단하였다.(MBart는 large모델 밖에 없다는 점도 아쉬운 점이다.)
+  <br><table border ="0">
+    <tr align ="center">
     <th width = "200">모델</th>
     <td width = "200">MBart</td>
     <td width = "200">BERT-large</td>
     <td width = "200">RoBERTa-large</td>
     <td width = "200">BART-large</td>
-  </tr>
-  <tr align ="center">
+    </tr>
+    <tr align ="center">
     <th>파라미터 수</th>
     <td>610M</td>
     <td>340M</td>
     <td>355M</td>
     <td>400M</td>
-  </tr></table>
+    </tr></table>
 
 - M2M100 <br>
 M2M100은 translation task를 위한 multilingual encoder-decoder (seq-to-seq) 모델이다. 기존 단일 모델들은 모든 언어 쌍 간에 번역할 수 있도록 교육함으로써 대규모 다국어 기계 번역을 수행할 수 있게 되었다.
