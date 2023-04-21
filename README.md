@@ -43,9 +43,18 @@ Source Text의 Format은 X [eos, src_lang_code], Target Text의 Format은 [tgt_l
     <td>400M</td>
   </tr></table>
 
+- M2M100 <br>
+M2M100은 translation task를 위한 multilingual encoder-decoder (seq-to-seq) 모델이다. 기존 단일 모델들은 모든 언어 쌍 간에 번역할 수 있도록 교육함으로써 대규모 다국어 기계 번역을 수행할 수 있게 되었다.
+하지만 이런 모델들은 주로 영어에서 타 언어 혹은 타 언어에서 영어로 번역된 데이터서만 훈련함으로써 영어 중심적이게 되었고, 이에 반해 M2M100은 100개 언어 쌍 간에 직접 번역할 수 있는 진정한 Many-to-Many multilingual translation model이라고 소개되어있다.
+  - Source & Target Text Format <br>
+MBart와 다르게 Source Text와 Target Text의 Format이 동일하다. Format은 [lang_code] X [eos]이며 lang_code는 언어 ID 토큰이며, X는 Source 혹은 Target Text이다. 
+  - Total parameters <br>
+M2M100은 두가지의 모델로 facebook/m2m100_418M, facebook/m2m100_1.2B이 있다. 뒤 숫자는 파라미터의 개수를 나타내며, 사용한 모델은 MBart보다 모델의 크기, 복잡성이 더 작은 모델을 지향하기에 facebook/m2m100_418M을 사용하였다.
+
 ## 4. 사용 모델과 데이터 및 참고링크
 - [KoBART](https://github.com/SKT-AI/KoBART)
 - [MBart & MBart-50](https://huggingface.co/docs/transformers/model_doc/mbart)
+- [M2M100](https://huggingface.co/docs/transformers/model_doc/m2m_100)
 - [한국어-영어 병렬 말뭉치](https://github.com/jungyeul/korean-parallel-corpora)
 - [KoBART Translation Example](https://github.com/seujung/KoBART-translation)
 - [Gradient Accumulation](https://kozodoi.me/blog/20210219/gradient-accumulation)
