@@ -2,8 +2,88 @@
  Machine Translation Task를 수행하기 위해 모델을 한국어-영어 병렬 말뭉치로 fine-tuning하여 성능을 확인한다. 성능 검증은 테스트 데이터셋의 ROUGE score와 간단한 문장입력으로 구글 번역기와 모델의 출력을 비교해볼 것이다.
 
 ## 1. 알고리즘 순서도
+<table border ="0">
+    <tr>
+      <td><img src="https://user-images.githubusercontent.com/86700191/233922133-5fe1675c-2442-4d58-bead-65f112b1fd34.png" width="100%" height="100%"></td>
+      <td><img src="https://user-images.githubusercontent.com/86700191/233922140-bb9f60fa-2426-49ec-8ae5-4c39d8dcca61.png" width="100%" height="100%"></td>
+    </tr>
+    <tr>
+      <td align ="center">KO-EN_Translation.ipynb</td>
+      <td align ="center">KO-EN_Translation_Inference.ipynb</td>
+</tr>
+</table>
 
 ## 2. 결과
+- Test 데이터셋에 대한 ROUGE 점수<br>
+<table border ="0">
+    <tr align="center">
+      <th></th><th>ROUGE-1</th><th>ROUGE-2</th><th>ROUGE-L</th>
+    </tr>
+    <tr align="center">
+      <th>Precision</th><td>0.428</td><td>0.177</td><td>0.353</td>
+    </tr>
+    <tr align="center">
+      <th >Recall</th><td>0.392</td><td>0.161</td><td>0.324</td>
+    </tr>
+</table>
+
+- 문장 번역 (Korpora 소개글의 첫 문단) <br>
+<table border ="0">
+  <tr>
+      <th align="center">한글 원문</th><td>최근 자연어 처리에 관심이 높아지면서 정부와 기업은 물론 뜻있는 개인에 이르기까지 데이터를 무료로 공개하는 추세입니다.</td>
+  </tr>
+  <tr>
+      <th align="center">영어 원문</th><td>Due to the growing interest in natural language processing, governments, businesses, and individuals are disclosing their data for free.</td>
+  </tr>
+  <tr>
+      <th align="center">모델 결과</th><td>The government, and other people are getting the data free, as the current interest is increasing in the language process.</td>
+  </tr>
+  <tr>
+      <th align="center">구글 결과</th><td>Recently, as interest in natural language processing has increased, governments and corporations, as well as willing individuals, are making their data available free of charge.</td>
+  </tr>
+</table>
+<table border ="0">
+  <tr>
+      <th align="center">한글 원문</th><td>하지만 데이터가 곳곳에 산재해 있다보니 품질 좋은 말뭉치임에도 그 존재조차 잘 알려지지 않은 경우가 많습니다.</td>
+  </tr>
+  <tr>
+      <th align="center">영어 원문</th><td>However, even for a high-quality corpus, its existence is often unknown as datasets are scattered in different locations.</td>
+  </tr>
+  <tr>
+      <th align="center">모델 결과</th><td>But it's often unknown even if it's a high-profile clown, as the data is out there.</td>
+  </tr>
+  <tr>
+      <th align="center">구글 결과</th><td>However, since data is scattered all over the place, there are many cases where even its existence is not well known even though it is a high-quality corpus.</td>
+  </tr>
+</table>
+<table border ="0">
+  <tr>
+      <th align="center">한글 원문</th><td>파일 포맷과 저장 형식 등이 각기 달라 사용이 쉽지 않습니다.</td>
+  </tr>
+  <tr>
+      <th align="center">영어 원문</th><td>Furthermore, each of their file or saved format is often different, making it even more difficult to use them.</td>
+  </tr>
+  <tr>
+      <th align="center">모델 결과</th><td>It's not easy to use, different from file formats and storage forms.</td>
+  </tr>
+  <tr>
+      <th align="center">구글 결과</th><td>It is not easy to use because the file format and storage format are different.</td>
+  </tr>
+</table>
+<table border ="0">
+  <tr>
+      <th align="center">한글 원문</th><td>개별 사용자들은 다운로드나 전처리 코드를 그때그때 개발해서 써야 하는 수고로움이 있습니다.</td>
+  </tr>
+  <tr>
+      <th align="center">영어 원문</th><td>Therefore, individuals need to painstakingly create download or preprocessing codes for every instance.</td>
+  </tr>
+  <tr>
+      <th align="center">모델 결과</th><td>Individuals have a complaint for developing download code or pre-process code at the time.</td>
+  </tr>
+  <tr>
+      <th align="center">구글 결과</th><td>Individual users have the trouble of developing and writing downloads or pre-processing codes at any time.</td>
+  </tr>
+</table>
 
 ## 3. 문제점 & 주의점
 - KoBART의 vocab <br>
